@@ -1,0 +1,7 @@
+<div id="cl_banner">
+  Quest sito utilizza cookie, anche di terze parti, per inviarti pubblicità e servizi in linea con le tue preferenze. Se vuoi saperne di più <%= link_to 'clicca qui', CookieLaw.policy_link, target: '_blank', class: :no_cl_accept %>. Chiudendo questo banner, scorrendo questa pagina o cliccando qualunque suo elemento acconsenti all'uso dei cookie.
+  <%= link_to 'Chiudi', '#', id: 'cl_close' %>
+</div>
+<%= javascript_tag do %>
+  window._cl_instance = new CookieLaw()
+<% end %>

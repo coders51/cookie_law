@@ -1,0 +1,34 @@
+$banner_bg: #000;
+$banner_text: #fff;
+$banner_close_button_bg: #fff;
+$banner_close_button_text: #000;
+$banner_close_button_border: #f00;
+
+#cl_banner {
+  position: absolute;
+  top: 0;
+  background-color: $banner_bg;
+  color: $banner_text;
+  width: 100%;
+  padding: 20px;
+
+  a {
+    color: $banner_text;
+  }
+
+
+  #cl_close {
+    float: right;
+    width: 100px;
+    margin-right: 40px;
+
+    padding: 2px 60px;
+    background-color: $banner_close_button_bg;
+    color: $banner_close_button_text;
+    border: 4px solid $banner_close_button_border;
+    text-decoration: none;
+
+    font-size: 28px;
+    line-height: 1.33333;
+  }
+}

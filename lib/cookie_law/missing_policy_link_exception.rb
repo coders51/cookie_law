@@ -1,0 +1,2 @@
+class MissingPolicyLinkException < StandardError
+end

@@ -1,0 +1,33 @@
+class CookieLaw
+  cookieName: '<%= CookieLaw.cookie_name %>'
+  currentCookie: null
+
+  constructor: ->
+    ($ document).on 'click', '#cl_close', @acceptPolicy
+    ($ document).ready =>
+      if @policyAccepted()
+        @hidePolicy()
+        ($ document).trigger 'cl:ready'
+
+  policyAccepted: ->
+    @currentCookie = Cookies.getJSON @cookieName
+    @currentCookie? and @currentCookie.accepted is true
+
+  acceptPolicy: (e) =>
+    if e? and e.type is 'click'
+      e.preventDefault()
+
+    Cookies.set @cookieName,
+      accepted: true
+      at: new Date()
+    @hidePolicy()
+
+  hidePolicy: ->
+    console.log 'hiding privacy policy'
+    ($ '#cl_banner').hide()
+
+
+
+
+
+(exports ? this).CookieLaw = CookieLaw
