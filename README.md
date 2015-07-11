@@ -25,13 +25,14 @@ rails generate cookie_law:install
 The generator will create the initializer file in your rails project,
 with all configuration options explained. You should take a look at it
 and you **MUST** provide your *policy link* or `cookie_law` will raise
-an exception when you start your server.
+`MissingPolicyLinkException` when you start your server.
 
 You will need to add two requires in you `application.js` and `application.css` files:
 
 ```javascript
 // app/assets/javascripts/application.js
 // ...
+//= require js.cookie
 //= require cookie_law
 ```
 
@@ -40,7 +41,7 @@ and
 ```css
 /* app/assets/javacsripts/application.css
  * ...
- * require cookie_law
+ *= require cookie_law
  */
 ```
 
@@ -87,6 +88,10 @@ rails generate cookie_law:views
 ```
 
 and you will have the default view copied in your project. You can find the view in `app/views/cookie_laws/_banner.html.erb`.
+
+## Thanks
+
+This project uses the awesome [js-cookie](https://github.com/js-cookie/js-cookie).
 
 ## Contributing
 
