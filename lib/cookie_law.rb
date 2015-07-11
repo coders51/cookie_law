@@ -7,7 +7,8 @@ require 'cookie_law/missing_policy_link_exception'
 module CookieLaw
   COOKIE_NAME = 'cl_accepted'
   DEFAULT_EXPIRATION = 365 # In Days
-  BEHAVIOR = :any
+  ACCEPT_ON_SCROLL = true
+  ACCEPT_ON_ANY_LINK = true
 
   def self.configuration
     @configuration ||= Configuration.new
@@ -28,8 +29,12 @@ module CookieLaw
     configuration.policy_link
   end
 
-  def behavior
-    configuration.behavior || BEHAVIOR
+  def self.accept_on_any_link
+    configuration.accept_on_any_link || ACCEPT_ON_ANY_LINK
+  end
+
+  def self.accept_on_scroll
+    configuration.accept_on_scroll || ACCEPT_ON_SCROLL
   end
 end
 

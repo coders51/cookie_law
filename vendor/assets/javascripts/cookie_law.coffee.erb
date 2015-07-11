@@ -1,21 +1,45 @@
-class CookieLaw
+class @CookieLaw
   cookieName: '<%= CookieLaw.cookie_name %>'
+  acceptOnScroll: <%= CookieLaw.accept_on_scroll %>
+  acceptOnAnyLink: <%= CookieLaw.accept_on_any_link %>
   currentCookie: null
 
   constructor: ->
-    ($ document).on 'click', '#cl_close', @acceptPolicy
     ($ document).ready =>
       if @policyAccepted()
         @hidePolicy()
         ($ document).trigger 'cl:ready'
+        if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
+          ($ document).on 'page:change', ->
+            ($ document).trigger 'cl:page_change'
+      else
+        @bindAcceptors()
+
+
+  bindAcceptors: ->
+    ($ document).on 'click', '#cl_close', (e) =>
+      e.preventDefault()
+      @acceptPolicy()
+
+    if @acceptOnScroll
+      ($ window).on 'scroll', =>
+        if ($ window).scrollTop() > 180
+          @acceptPolicy()
+    if @acceptOnAnyLink
+      ($ document).on 'click', "a:not('.no_cl_accept')", @acceptPolicy
+
+  unbindAcceptors: ->
+    if @acceptOnScroll
+      ($ window).off 'scroll', @acceptPolicy
+    if @acceptOnAnyLink
+      ($ document).off 'click', "a:not('.no_cl_accept')", @acceptPolicy
 
   policyAccepted: ->
     @currentCookie = Cookies.getJSON @cookieName
     @currentCookie? and @currentCookie.accepted is true
 
   acceptPolicy: (e) =>
-    if e? and e.type is 'click'
-      e.preventDefault()
+    @unbindAcceptors()
 
     Cookies.set @cookieName,
       accepted: true
@@ -23,11 +47,4 @@ class CookieLaw
     @hidePolicy()
 
   hidePolicy: ->
-    console.log 'hiding privacy policy'
     ($ '#cl_banner').hide()
-
-
-
-
-
-(exports ? this).CookieLaw = CookieLaw
