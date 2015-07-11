@@ -1,10 +1,12 @@
 # CookieLaw
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/cookie_law`. To experiment with that code, run `bin/console` for an interactive prompt.
+CookieLaw aims to help Ruby on Rails developer to deal with European Cookie Policy.
 
-TODO: Delete this and the text above, and describe your gem
+From June 2015 it is required for every website targeting European users to display a banner and obtain user consent before installing non technical cookies in user's browser.
 
-## Installation
+To keep it simple, if you use Google Analytics or every other tracking/profiling service which relies on cookies, you must have this banner.
+
+## Getting Started
 
 Add this line to your application's Gemfile:
 
@@ -12,23 +14,79 @@ Add this line to your application's Gemfile:
 gem 'cookie_law'
 ```
 
-And then execute:
+Run the bundle command to install it.
 
-    $ bundle
+After you have installed the gem, you need to run the generator:
 
-Or install it yourself as:
+```sh
+rails generate cookie_law:install
+```
 
-    $ gem install cookie_law
+The generator will create the initializer file in your rails project,
+with all configuration options explained. You should take a look at it
+and you **MUST** provide your *policy link* or `cookie_law` will raise
+an exception when you start your server.
 
-## Usage
+You will need to add two requires in you `application.js` and `application.css` files:
 
-TODO: Write usage instructions here
+```javascript
+// app/assets/javascripts/application.js
+// ...
+//= require cookie_law
+```
 
-## Development
+and
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+```css
+/* app/assets/javacsripts/application.css
+ * ...
+ * require cookie_law
+ */
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+After having configured your initializer and js/css files you can insert the `cookie_law!`
+helper call in your layout (inside the html body)
+
+```html
+  <%= cookie_law! %>
+```
+
+This will render the default `_banner.<locale>.html.erb` present in this gem.
+
+When accepting policy with click, `cookie_law` will intercepts every click in the page. If you need to
+add some exception to this behavior (for example when linking you Privacy Policy) you can add the 
+`.no_cl_accept` class to such links.
+
+## Javascript events
+
+`cookie_law` comes with a Javascript library. You should not run any cookie-based profiling tool
+if the policy is not accepted. To deal with this, `cookie_law` will trigger events in your `document`
+to allow you to run code in different conditions. Let's see it with an example:
+
+```javascript
+$(document).on('cl:ready', function() {
+  // This function will be called only when the users accepts the cookie policy
+  // with one of the allowed method.
+  // Will also be called after every document.ready function if the policy has been accepted.
+  // This is the right place to trigger Google Analytics track page, for example
+});
+
+$(document).on('cl:page_change', function() {
+  // If your application uses Turbolinks, this event will be triggered after every
+  // 'page:change' Turbolinks event
+});
+```
+
+## Configuring views
+
+You can customize the appearance of the banner copying and change the views.
+Simply run
+
+```sh
+rails generate cookie_law:views
+```
+
+and you will have the default view copied in your project. You can find the view in `app/views/cookie_laws/_banner.html.erb`.
 
 ## Contributing
 

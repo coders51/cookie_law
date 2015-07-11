@@ -2,6 +2,7 @@ class @CookieLaw
   cookieName: '<%= CookieLaw.cookie_name %>'
   acceptOnScroll: <%= CookieLaw.accept_on_scroll %>
   acceptOnAnyLink: <%= CookieLaw.accept_on_any_link %>
+  scrollHeight: <%= CookieLaw.scroll_height %>
   currentCookie: null
 
   constructor: ->
@@ -15,7 +16,6 @@ class @CookieLaw
       else
         @bindAcceptors()
 
-
   bindAcceptors: ->
     ($ document).on 'click', '#cl_close', (e) =>
       e.preventDefault()
@@ -23,16 +23,16 @@ class @CookieLaw
 
     if @acceptOnScroll
       ($ window).on 'scroll', =>
-        if ($ window).scrollTop() > 180
+        if ($ window).scrollTop() > @scrollHeight
           @acceptPolicy()
     if @acceptOnAnyLink
-      ($ document).on 'click', "a:not('.no_cl_accept')", @acceptPolicy
+      ($ document).on 'click', "a:not('.no_cl_accept, #cl_close')", @acceptPolicy
 
   unbindAcceptors: ->
     if @acceptOnScroll
       ($ window).off 'scroll', @acceptPolicy
     if @acceptOnAnyLink
-      ($ document).off 'click', "a:not('.no_cl_accept')", @acceptPolicy
+      ($ document).off 'click', "a:not('.no_cl_accept, #cl_close')", @acceptPolicy
 
   policyAccepted: ->
     @currentCookie = Cookies.getJSON @cookieName
@@ -44,7 +44,10 @@ class @CookieLaw
     Cookies.set @cookieName,
       accepted: true
       at: new Date()
+    ($ document).trigger 'cl:ready'
     @hidePolicy()
 
   hidePolicy: ->
     ($ '#cl_banner').hide()
+
+@_cl_instance = new @CookieLaw()

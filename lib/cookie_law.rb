@@ -9,6 +9,7 @@ module CookieLaw
   DEFAULT_EXPIRATION = 365 # In Days
   ACCEPT_ON_SCROLL = true
   ACCEPT_ON_ANY_LINK = true
+  DEFAULT_SCROLL_HEIGHT = 180
 
   def self.configuration
     @configuration ||= Configuration.new
@@ -27,6 +28,10 @@ module CookieLaw
       raise MissingPolicyLinkException
     end
     configuration.policy_link
+  end
+
+  def self.scroll_height
+    configuration.scroll_height || DEFAULT_SCROLL_HEIGHT
   end
 
   def self.accept_on_any_link
