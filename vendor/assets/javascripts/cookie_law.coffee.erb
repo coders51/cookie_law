@@ -14,6 +14,7 @@ class @CookieLaw
           ($ document).on 'page:change', ->
             ($ document).trigger 'cl:page_change'
       else
+        ($ document).trigger 'cl:not_accepted'
         @bindAcceptors()
 
   bindAcceptors: ->

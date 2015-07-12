@@ -65,6 +65,10 @@ if the policy is not accepted. To deal with this, `cookie_law` will trigger even
 to allow you to run code in different conditions. Let's see it with an example:
 
 ```javascript
+$(document).on('cl:not_accepted', function() {
+  // This function will be called when a user visits your page but has not accepted
+  // cookie policy. This is the right place (if needed) to use anonymous tracking/profiling system
+});
 $(document).on('cl:ready', function() {
   // This function will be called only when the users accepts the cookie policy
   // with one of the allowed method.
@@ -92,6 +96,16 @@ and you will have the default view copied in your project. You can find the view
 ## Thanks
 
 This project uses the awesome [js-cookie](https://github.com/js-cookie/js-cookie).
+
+## Changelog
+
+### 0.1.1 - 2015-08-12
+
+* Added `$(document).on('cl:not_accepted', function() {})` callback for user who is visiting the page but has not yet accepted the policy.
+
+### 0.1.0 - 2015-07-12
+
+* First release
 
 ## Contributing
 
