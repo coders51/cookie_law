@@ -6,21 +6,17 @@ $banner_close_button_border: #f00;
 
 #cl_banner {
   position:fixed;
-	width: 100%;
-	left: 0;
-	top: 0;
-	padding: 0.5em 5%;
-	background: $banner_bg;
-	font-size: 13px;
-	font-weight: 400;
-	text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
+  width: 100%;
+  left: 0;
+  top: 0;
+  padding: 0.5em 5%;
+  background: $banner_bg;
+  font-size: 13px;
+  font-weight: 400;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
   z-index: 99999;
-	/*text-align: center; */
-	color: $banner_text;
-	line-height: 26px;
-  // padding-right: 10%;
-
-
+  color: $banner_text;
+  line-height: 26px;
 
   a {
     color: $banner_text;
@@ -38,18 +34,18 @@ $banner_close_button_border: #f00;
   }
   #cl_close {
     display: inline-block;
-  	color: white;
-  	text-decoration: none;
-  	background: black;
-  	padding: 0.5em 1.3em;
-  	font-weight: 700;
-  	border-radius: 3px;
-  	border: 1px solid white;
-  	box-shadow: 0 0 2px rgba(0,0,0,0.25);
-  	text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
-  	-o-transition: background 0.5s ease-in;
-  	-webkit-transition: background 0.25s ease-in;
-  	-moz-transition: background 0.25s ease-in;
+    color: white;
+    text-decoration: none;
+    background: black;
+    padding: 0.5em 1.3em;
+    font-weight: 700;
+    border-radius: 3px;
+    border: 1px solid white;
+    box-shadow: 0 0 2px rgba(0,0,0,0.25);
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
+    -o-transition: background 0.5s ease-in;
+    -webkit-transition: background 0.25s ease-in;
+    -moz-transition: background 0.25s ease-in;
   }
 }
 
@@ -57,9 +53,9 @@ $banner_close_button_border: #f00;
 @media screen and (max-width: 480px) {
   #cl_banner {
     text-align: center;
-  	#cl_close{
-  		top:6%;
-  	}
+    #cl_close{
+      top:6%;
+    }
     .cl_text{
       padding-right: 0;
     }
