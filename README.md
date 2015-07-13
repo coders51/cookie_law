@@ -99,6 +99,10 @@ This project uses the awesome [js-cookie](https://github.com/js-cookie/js-cookie
 
 ## Changelog
 
+### 0.1.2 - 2015-08-13
+
+* Banner layout improved by @Tamiyadd
+
 ### 0.1.1 - 2015-08-12
 
 * Added `$(document).on('cl:not_accepted', function() {})` callback for user who is visiting the page but has not yet accepted the policy.
