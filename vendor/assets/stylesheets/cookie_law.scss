@@ -25,6 +25,9 @@ $banner_close_button_border: #f00;
   a {
     color: $banner_text;
   }
+  .no_cl_accept{
+    text-decoration: underline;
+  }
   .cl_text{
     padding-right: 5%;
   }
