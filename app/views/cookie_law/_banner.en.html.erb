@@ -1,6 +1,10 @@
 <% unless policy_accepted? %>
   <div id="cl_banner">
-    This site uses cookies, even from third part, to send you ads and services that suits your preferences. If you want to know more <%= link_to 'click here', CookieLaw.policy_link, target: '_blank', class: :no_cl_accept %>. Closing this banner, scrolling this page or clicking any link in this page, you agree with cookies usage.
-    <%= link_to 'Close', '#', id: 'cl_close' %>
+    <div class="cl_text">
+      This site uses cookies, even from third part, to send you ads and services that suits your preferences. If you want to know more <%= link_to 'click here', CookieLaw.policy_link, target: '_blank', class: :no_cl_accept %>. Closing this banner, scrolling this page or clicking any link in this page, you agree with cookies usage.
+    </div>
+    <div class="cl_button">
+      <%= link_to 'Close', '#', id: 'cl_close' %>
+    </div>
   </div>
 <% end %>

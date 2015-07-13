@@ -5,30 +5,68 @@ $banner_close_button_text: #000;
 $banner_close_button_border: #f00;
 
 #cl_banner {
-  position: absolute;
-  top: 0;
-  background-color: $banner_bg;
-  color: $banner_text;
-  width: 100%;
-  padding: 20px;
+  position:fixed;
+	width: 100%;
+	left: 0;
+	top: 0;
+	padding: 0.5em 5%;
+	background: $banner_bg;
+	font-size: 13px;
+	font-weight: 400;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
+  z-index: 99999;
+	/*text-align: center; */
+	color: $banner_text;
+	line-height: 26px;
+  // padding-right: 10%;
+
+
 
   a {
     color: $banner_text;
   }
-
-
+  .cl_text{
+    padding-right: 5%;
+  }
+  .cl_button{
+    position: absolute;
+    top: 10%;
+    right: 2%;
+  }
   #cl_close {
-    float: right;
-    width: 100px;
-    margin-right: 40px;
+    display: inline-block;
+  	color: white;
+  	text-decoration: none;
+  	background: black;
+  	padding: 0.5em 1.3em;
+  	font-weight: 700;
+  	border-radius: 3px;
+  	border: 1px solid white;
+  	box-shadow: 0 0 2px rgba(0,0,0,0.25);
+  	text-shadow: 0 -1px 0 rgba(0,0,0,0.35);
+  	-o-transition: background 0.5s ease-in;
+  	-webkit-transition: background 0.25s ease-in;
+  	-moz-transition: background 0.25s ease-in;
+  }
+}
 
-    padding: 2px 60px;
-    background-color: $banner_close_button_bg;
-    color: $banner_close_button_text;
-    border: 4px solid $banner_close_button_border;
-    text-decoration: none;
 
-    font-size: 28px;
-    line-height: 1.33333;
+@media screen and (max-width: 480px) {
+  #cl_banner {
+    text-align: center;
+  	#cl_close{
+  		top:6%;
+  	}
+    .cl_text{
+      padding-right: 0;
+    }
+    .cl_button{
+      text-align: center;
+      position: relative;
+      top: 0;
+      right: 0;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
   }
 }
