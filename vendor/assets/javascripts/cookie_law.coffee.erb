@@ -1,6 +1,7 @@
 class @CookieLaw
   cookieName: '<%= CookieLaw.cookie_name %>'
   acceptOnScroll: <%= CookieLaw.accept_on_scroll %>
+  expires: <%= CookieLaw.expiration %>
   acceptOnAnyLink: <%= CookieLaw.accept_on_any_link %>
   scrollHeight: <%= CookieLaw.scroll_height %>
   currentCookie: null
@@ -44,7 +45,9 @@ class @CookieLaw
 
     Cookies.set @cookieName,
       accepted: true
-      at: new Date()
+      at: new Date(),{
+        expires: @expires
+      }
     ($ document).trigger 'cl:ready'
     @hidePolicy()
 

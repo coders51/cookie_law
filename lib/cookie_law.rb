@@ -34,6 +34,10 @@ module CookieLaw
     configuration.scroll_height || DEFAULT_SCROLL_HEIGHT
   end
 
+  def self.expiration
+    configuration.expiration || DEFAULT_EXPIRATION
+  end
+
   def self.accept_on_any_link
     configuration.accept_on_any_link || ACCEPT_ON_ANY_LINK
   end

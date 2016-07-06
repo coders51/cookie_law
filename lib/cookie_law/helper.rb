@@ -7,7 +7,7 @@ module CookieLaw::Helper
   def policy_accepted?
     return false unless cookies[CookieLaw.cookie_name].is_a?(String)
     begin
-      JSON.parse(cookies[CookieLaw.cookie_name])['accepted']
+      cookies[CookieLaw.cookie_name]['accepted']
     rescue JSON::ParserError
       cookies.delete[CookieLaw.cookie_name]
       false
