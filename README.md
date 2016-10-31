@@ -55,7 +55,7 @@ helper call in your layout (inside the html body)
 This will render the default `_banner.<locale>.html.erb` present in this gem.
 
 When accepting policy with click, `cookie_law` will intercepts every click in the page. If you need to
-add some exception to this behavior (for example when linking you Privacy Policy) you can add the 
+add some exception to this behavior (for example when linking you Privacy Policy) you can add the
 `.no_cl_accept` class to such links.
 
 ## Javascript events
@@ -98,6 +98,10 @@ and you will have the default view copied in your project. You can find the view
 This project uses the awesome [js-cookie](https://github.com/js-cookie/js-cookie).
 
 ## Changelog
+
+### 0.1.3 - 2015-08-13
+
+* Start with banner hidden then show it to prevent delay on hiding when you have accepted cookies
 
 ### 0.1.2 - 2015-08-13
 
