@@ -5,6 +5,7 @@ $banner_close_button_text: #000;
 $banner_close_button_border: #f00;
 
 #cl_banner {
+  display: none;
   position:fixed;
   width: 100%;
   left: 0;

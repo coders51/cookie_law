@@ -8,12 +8,12 @@ class @CookieLaw
   constructor: ->
     ($ document).ready =>
       if @policyAccepted()
-        @hidePolicy()
         ($ document).trigger 'cl:ready'
         if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
           ($ document).on 'page:change', ->
             ($ document).trigger 'cl:page_change'
       else
+        @showPolicy()
         ($ document).trigger 'cl:not_accepted'
         @bindAcceptors()
 
@@ -50,5 +50,8 @@ class @CookieLaw
 
   hidePolicy: ->
     ($ '#cl_banner').hide()
+
+  showPolicy: ->
+    ($ '#cl_banner').show()
 
 @_cl_instance = new @CookieLaw()
