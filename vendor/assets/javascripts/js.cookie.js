@@ -55,10 +55,10 @@
 					}
 				} catch (e) {}
 
-				value = encodeURIComponent(String(value));
+        value = encodeURIComponent(String(value));
 				value = value.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
 
-				key = encodeURIComponent(String(key));
+        key = encodeURIComponent(String(key));
 				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
 				key = key.replace(/[\(\)]/g, escape);
 
@@ -81,7 +81,7 @@
 			// in case there are no cookies at all. Also prevents odd result when
 			// calling "get()"
 			var cookies = document.cookie ? document.cookie.split('; ') : [];
-			var rdecode = /(%[0-9A-Z]{2})+/g;
+			var rdecode = /%([0-7][0-9a-fA-F])\w{0,1}/g;
 			var i = 0;
 
 			for (; i < cookies.length; i++) {
