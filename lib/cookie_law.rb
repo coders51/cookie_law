@@ -7,7 +7,7 @@ require 'cookie_law/missing_policy_link_exception'
 module CookieLaw
   COOKIE_NAME = 'cl_accepted'
   DEFAULT_EXPIRATION = 365 # In Days
-  ACCEPT_ON_SCROLL = true
+  ACCEPT_ON_SCROLL = false
   ACCEPT_ON_ANY_LINK = true
   DEFAULT_SCROLL_HEIGHT = 180
 
