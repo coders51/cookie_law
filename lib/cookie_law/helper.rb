@@ -9,7 +9,7 @@ module CookieLaw::Helper
     begin
       JSON.parse(cookies[CookieLaw.cookie_name])['accepted']
     rescue JSON::ParserError
-      cookies.delete[CookieLaw.cookie_name]
+      cookies.delete(CookieLaw.cookie_name)
       false
     end
   end
